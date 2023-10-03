@@ -8,6 +8,7 @@ import SponsorRedBull from "@/assets/SponsorRedBull.png";
 import SponsorForbes from "@/assets/SponsorForbes.png";
 import SponsorFortune from "@/assets/SponsorFortune.png";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import { motion } from "framer-motion";
 
 type Props = {
   setSelectedPage: (value: SelectedPage) => void;
@@ -23,7 +24,16 @@ const Home = ({ setSelectedPage }: Props) => {
         {/* MAIN HEADER */}
         <div className="z-10 mt-32 md:basis-3/5">
             {/* Headings */}
-            <div className="md:mt-20">
+            <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{
+                    once: true,
+                    amount: 0.5,
+                }}  
+            className="md:mt-20">
             <div className="relative">
                 <div className="before:absolute before:-top-20 before:-left-20 before:z-[-1] md:before:content-evolvetext">
                 <img alt="home page text" src={HomePageText} />
@@ -33,7 +43,7 @@ const Home = ({ setSelectedPage }: Props) => {
                 Build your desired body shape with us. We provide you with the best
                 training program and meal plan.
             </p>
-            </div>
+            </motion.div>
             {/* ACTIONS */}
             <div className="mt-8 flex items-center gap-8">
                 <ActionButton 
