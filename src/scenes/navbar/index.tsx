@@ -20,6 +20,7 @@ const Navbar = ({
     const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
     const flexBetween = "flex item-center justify-between";
     const isAboveMediumScreen = useMediaQuery("(min-width: 1060px)");
+    const navBarBackground = isTopOfPage ? "bg-transparent" : "bg-primary-100 bg-opacity-90 drop-shadow-xl";
   return (
     <nav>
         <div 
