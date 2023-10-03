@@ -1,11 +1,25 @@
 import { useState, useEffect } from "react";
-import { Bars3BottomRightIcon } from "@heroicons/react/24/outline";
+import { Bars3BottomRightIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import Logo from "@/assets/Logo.png";
+import Link from "./Link";
+import useMediaQuery from "@/hooks/useMediaQuery";
+import ActionButton from "@/shared/ActionButton";
+import { SelectedPage } from "@/shared/types";
 
-type Props = {}
+type Props = {
+    isTopOfPage: boolean,
+    selectedPage: SelectedPage,
+    setSelectedPage: (page: SelectedPage) => void
+}
 
-const index = (props: Props) => {
-    const flexBetween = "flex item-center justify-between"
+const Navbar = ({
+    isTopOfPage,
+    selectedPage,
+    setSelectedPage
+}: Props) => {
+    const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
+    const flexBetween = "flex item-center justify-between";
+    const isAboveMediumScreen = useMediaQuery("(min-width: 1060px)");
   return (
     <nav>
         <div 
@@ -17,24 +31,87 @@ const index = (props: Props) => {
                     <img alt="logo" src={Logo} />
 
                     {/* RIGHT SIDE */}
-                    <div className={`${flexBetween} w-full`}>
-                        <div className={`${flexBetween} gap-8 text-sm`}>
-                            <p>Home</p>
-                            <p>Benefits</p>
-                            <p>Our Classes</p>
-                            <p>Contact us</p>
-                        </div>
+                    {
+                        isAboveMediumScreen ? (
+                            <div className={`${flexBetween} w-full`}>
+                                <div className={`${flexBetween} gap-8 text-sm`}>
+                                    <Link 
+                                        page="Home"
+                                        selectedPage={selectedPage}
+                                        setSelectedPage={setSelectedPage}
+                                    />
+                                    <Link 
+                                        page="Benefits"
+                                        selectedPage={selectedPage}
+                                        setSelectedPage={setSelectedPage}
+                                    />
+                                    <Link 
+                                        page="Our Classes"
+                                        selectedPage={selectedPage}
+                                        setSelectedPage={setSelectedPage}
+                                    />
+                                    <Link 
+                                        page="Contact us"
+                                        selectedPage={selectedPage}
+                                        setSelectedPage={setSelectedPage}
+                                    />
+                                </div>
 
-                        <div className={`${flexBetween} gap-8`}>
-                            <p>Sign In</p>
-                            <button>Become a Member</button>
-                        </div>
-                    </div>
+                                <div className={`${flexBetween} gap-8`}>
+                                    <p>Sign In</p>
+                                    <ActionButton setSelectedPage={setSelectedPage}>Become a Member</ActionButton>
+                                </div>
+                            </div>
+                        ) : (
+                            <button className="rounded-full bg-secondary-500 p-2" onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                                <Bars3BottomRightIcon className="h-6 w-6 text-white" />
+                            </button>
+                        )
+                    }
                 </div>
             </div>
         </div>
+
+        {/* MOBILE MENU */}
+        {
+            isMenuToggled && !isAboveMediumScreen && (
+                <div className="fixed bottom-0 right-0 z-40 w-[300px] h-full bg-primary-100 bg-opacity-90 drop-shadow-xl">
+                    <div className="flex justify-end p-12">
+                        <button className="rounded-full bg-secondary-500 p-2" onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                            <XCircleIcon className="h-6 w-6 text-gray-400" />
+                        </button>
+                    </div>
+
+                    {/* MOBILE MENU LINKS */}
+                    <div className="flex flex-col ml-[33%] gap-10 text-2xl">
+                        <Link 
+                            page="Home"
+                            selectedPage={selectedPage}
+                            setSelectedPage={setSelectedPage}
+                        />
+                        <Link 
+                            page="Benefits"
+                            selectedPage={selectedPage}
+                            setSelectedPage={setSelectedPage}
+                        />
+                        <Link 
+                            page="Our Classes"
+                            selectedPage={selectedPage}
+                            setSelectedPage={setSelectedPage}
+                        />
+                        <Link 
+                            page="Contact us"
+                            selectedPage={selectedPage}
+                            setSelectedPage={setSelectedPage}
+                        />
+                        <p>Sign In</p>
+                        <ActionButton setSelectedPage={setSelectedPage}>Become a Member</ActionButton>
+                    </div>
+                </div>
+            )
+        }
     </nav>
   )
 }
 
-export default index
+export default Navbar
