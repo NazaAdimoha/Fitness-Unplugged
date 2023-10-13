@@ -48,7 +48,9 @@ type Props = {
     setSelectedPage: (value: SelectedPage) => void;
 }
 
-const OurClasses = (props: Props) => {
+const OurClasses = ({
+    setSelectedPage
+}: Props) => {
   return (
     <section>
               <motion.div
