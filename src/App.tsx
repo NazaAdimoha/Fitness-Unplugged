@@ -2,6 +2,7 @@ import Navbar from "@/scenes/navbar";
 import { useEffect, useState } from "react";
 import Home from "@/scenes/home";
 import Benefits from "./scenes/benefits";
+import OurClasses from "./scenes/ourClasses";
 // import OurClasses from "@/scenes/ourClasses";
 // import ContactUs from "@/scenes/contactUs";
 // import Footer from "@/scenes/footer";
@@ -45,9 +46,11 @@ function App() {
       <Home 
         setSelectedPage={() => setSelectedPage(SelectedPage.Home)}
        />
-      {/* <OurClasses /> */}
       <Benefits 
         setSelectedPage={() => setSelectedPage(SelectedPage.Benefits)}
+      />
+      <OurClasses 
+        setSelectedPage={() => setSelectedPage(SelectedPage.OurClasses)}
       />
       {/* <ContactUs /> */}
       {/* <Footer /> */}

@@ -45,15 +45,13 @@ const classes: Array<ClassType> = [
 ];
 
 type Props = {
-    setSelectedPage: (value: SelectedPage) => void;
-}
+  setSelectedPage: (value: SelectedPage) => void;
+};
 
-const OurClasses = ({
-    setSelectedPage
-}: Props) => {
+const OurClasses = ({ setSelectedPage }: Props) => {
   return (
     <section>
-              <motion.div
+      <motion.div
         onViewportEnter={() => setSelectedPage(SelectedPage.OurClasses)}
       >
         <motion.div
@@ -91,7 +89,7 @@ const OurClasses = ({
         </div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default OurClasses
+export default OurClasses;
