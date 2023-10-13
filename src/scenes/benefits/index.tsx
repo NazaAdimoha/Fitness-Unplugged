@@ -39,16 +39,23 @@ const Benefits = ({
         <motion.div 
             className="flex flex-col items-center justify-center"
             onViewportEnter={() => setSelectedPage(SelectedPage.Benefits)}
+            onViewportLeave={() => setSelectedPage(SelectedPage.Home)}
+            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
         >
             {/* MAIN HEADER */}
-            <div className="md:my-8 md:w-3/5">
+            <motion.div 
+                className="md:my-8 md:w-3/5">
+                
                 <HText>
                     So Much More Than Just A Gym
                 </HText>
                 <p className="my-5 text-sm">
                     We are a community of like-minded people who are all here to give you the support you need to achieve your goals. We are here to help you every step of the way in achieving that Set Body.
                 </p>
-            </div>
+            </motion.div>
 
             {/* BENEFITS */}
             <div
