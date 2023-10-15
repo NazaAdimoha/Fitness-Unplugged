@@ -53,6 +53,7 @@ const OurClasses = ({ setSelectedPage }: Props) => {
     <section>
       <motion.div
         onViewportEnter={() => setSelectedPage(SelectedPage.OurClasses)}
+        className=""
       >
         <motion.div
           className="mx-auto w-5/6"
